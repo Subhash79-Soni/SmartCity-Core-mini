@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveSPSAI | Smart City Analytics - Premium</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+</head>
+<body>
+
+    <nav class="navbar glass-nav">
+        <div class="container nav-container">
+            <a href="#home" class="brand">
+                <span class="logo-box">
+                    <img src="{{ url_for('static', filename='img/sps.jpeg') }}" alt="WaveSPSAI Logo" height="30" width="30">
+                </span> 
+                WaveSPSAI
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#datasets" class="nav-link">Data Sets</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li class="nav-btn-group">
+                    <button id="showLoginBtn" class="btn-text">Login</button>
+                    <button id="showSignupBtn" class="btn-primary btn-small">Sign Up</button>
+                      <button id="premiumBtn" class="btn-secondary btn-small ml-2" data-url="{{ url_for('premium_page') }}">
+    Premium 👑
+</button>
+                </li>
+                <li><button id="themeToggle" class="btn-icon" aria-label="Toggle Theme">☀️</button></li>
+              
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text fade-in-up">
+                <h1>Smart City Analytics <br><span class="gradient-text">with AI & Data Science</span></h1>
+                <p class="hero-subtext">Traffic, energy, aur pollution ko **AI-driven insights** se analyze karein. Cities ko **smarter aur sustainable** banaein.</p>
+                <div class="cta-group">
+                    <a href="#dashboard" class="btn-primary">Explore Dashboard</a>
+                    <a href="#datasets" class="btn-secondary">Get Data</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-glow"></div>
+    </header>
+
+    <div class="container metrics-wrapper">
+        <div class="metrics-container">
+            <div class="metric-card glass">
+                <h3>🌱 Air Quality (AQI)</h3>
+                <p id="aqiValue" class="metric-value">Loading...</p>
+            </div>
+            <div class="metric-card glass">
+                <h3>🚗 Traffic Load</h3>
+                <p id="trafficValue" class="metric-value">Loading...</p>
+            </div>
+            <div class="metric-card glass">
+                <h3>⚡ Energy Usage</h3>
+                <p id="energyValue" class="metric-value">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="dashboard" class="section">
+        <div class="container">
+            <h2 class="section-heading">Real-Time City Analytics</h2>
+            <div class="dashboard-grid">
+                <div class="chart-box glass span-2">
+                    <div class="chart-header">
+                        <h4>Traffic Flow Prediction</h4>
+                        <span class="status-badge live">LIVE</span>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-box glass">
+                    <div class="chart-header">
+                        <h4>Pollution Levels (PM2.5)</h4>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="pollutionChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-box glass">
+                    <div class="chart-header">
+                        <h4>Energy Usage Breakdown</h4>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="energyPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-heading">Core Solutions</h2>
+            <div class="features-row">
+                <div class="feature-item glass hover-scale">
+                    <div class="icon">🚦</div>
+                    <h3>Traffic Prediction</h3>
+                    <p>ML se traffic congestion ko **30% kam** karne ka prediction.</p>
+                </div>
+                <div class="feature-item glass hover-scale">
+                    <div class="icon">💨</div>
+                    <h3>Pollution Monitoring</h3>
+                    <p>Real-time AQI aur toxic gas monitoring ke liye smart sensors.</p>
+                </div>
+                <div class="feature-item glass hover-scale">
+                    <div class="icon">💡</div>
+                    <h3>Energy Optimization</h3>
+                    <p>Demand ke hisaab se street lights aur grid load ko balance karna.</p>
+                </div>
+                <div class="feature-item glass hover-scale">
+                    <div class="icon">🗑️</div>
+                    <h3>Smart Waste Mgmt</h3>
+                    <p>IoT dustbins se data lekar efficient collection routes banana.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="datasets" class="section">
+        <div class="container">
+            <h2 class="section-heading">Open Data Resources</h2>
+            <p class="section-subheading">Download our primary datasets used for Model Training & Analysis.</p>
+            
+            <div class="features-row">
+                <div class="feature-item glass hover-scale">
+                    <div class="icon">📊</div>
+                    <h3>Traffic Data.csv</h3>
+                    <p>5-year historical traffic flow & congestion data.</p>
+                    <a href="/download/traffic_data.csv" class="btn btn-primary">Download CSV</a>
+                </div>
+                
+                <div class="feature-item glass hover-scale">
+                    <div class="icon">🌫️</div>
+                    <h3>AQI_Levels.json</h3>
+                    <p>PM2.5/PM10 sensor readings zone-wise.</p>
+                    <a href="/download/aqi_data.json" class="btn btn-primary">Download JSON</a>
+                </div>
+
+                <div class="feature-item glass hover-scale">
+                    <div class="icon">⚡</div>
+                    <h3>Energy_Grid.csv</h3>
+                    <p>Smart Grid power consumption dataset.</p>
+                    <a href="/download/energy_data.csv" class="btn btn-primary">Download CSV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="simulation" class="section">
+        <div class="container">
+            <h2 class="section-heading">AI Simulation Lab</h2>
+            <div class="sim-grid">
+                
+                <div class="sim-card glass span-2"> 
+                    <div class="card-header">
+                        <div class="card-icon">🚀</div>
+                        <div>
+                            <h3>Master System Control</h3>
+                            <p class="text-muted-small">Dashboard analytics aur AI live simulation ko ek click mein shuru karein.</p>
+                        </div>
+                    </div>
+                    <button id="masterStartBtn" class="btn-primary full-width">START ALL LIVE SYSTEMS</button>
+                </div>
+
+                <div class="sim-card glass">
+                    <div class="card-icon">👁️</div>
+                    <h3>Live AI Vision Demo</h3>
+                    <p>Crowd aur vehicle detection ka live simulation.</p>
+                    
+                    <div class="video-container">
+                        <video id="cameraFeed" autoplay playsinline muted></video>
+                        <div id="aiOverlay" class="ai-overlay">AI System Offline</div>
+                    </div>
+
+                    <div class="control-row">
+                        <button id="cameraOnBtn" class="btn-small btn-primary">Start AI Cam</button>
+                        <button id="cameraOffBtn" class="btn-small btn-outline">Stop</button>
+                    </div>
+                </div>
+
+                <div class="sim-card glass">
+                    <div class="card-icon">📍</div>
+                    <h3>Geospatial Tracking</h3>
+                    <p>Sensor aur user position ko locate karne ka demo.</p>
+                    
+                    <div class="geo-data">
+                        <span id="locationStatus">Status: Idle</span>
+                        <code id="locationCoords">Lat: --, Lng: --</code>
+                    </div>
+
+                    <button id="locateBtn" class="btn-small btn-secondary full-width">Locate Sensors</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section">
+        <div class="container">
+            <h2 class="section-heading">Meet Team <span class="gradient-text">Innovators</span></h2>
+            
+            <div class="team-grid">
+                <div class="team-card glass">
+                    <div class="img-box">
+                        <img src="{{ url_for('static', filename='img/team1.jpg') }}" alt="Subhash Chandra Soni">
+                    </div>
+                    <h3>Subhash Chandra Soni</h3>
+                    <p class="role">Frontend Designer & UI/UX
+                                    and Web Developer
+                                    in using python</p>
+                    
+                </div>  
+        
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container contact-wrapper">
+            <div class="contact-container glass">
+                <h2>Contact Command Center</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required class="input-field">
+                        <input type="email" placeholder="Email Address" required class="input-field">
+                    </div>
+                    <textarea placeholder="Message / Report Issue" rows="4" required class="input-field"></textarea>
+                    <button type="submit" class="btn-primary full-width">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-inner">
+            <p>&copy; 2025 WaveSPSAI. Smart City Solutions.</p>
+            <div class="footer-links">
+                <a href="#">Social Icons</a>
+                <a href="#">Quick Links</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919204945708?text=Hello%20WaveSPSAI%20Team" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="{{ url_for('static', filename='img/whatsapp1.jpeg') }}" alt="WhatsApp">
+    </a>
+
+    <div id="authModal" class="auth-modal-overlay">
+        <div class="auth-box glass">
+            <button id="closeModalBtn" class="close-btn" aria-label="Close Modal">&times;</button>
+            <div class="auth-switch">
+                <button id="switchLogin" class="switch-btn active">Login</button>
+                <button id="switchSignup" class="switch-btn">Sign Up</button>
+            </div>
+            
+            <div id="loginForm" class="auth-form active">
+                <h2 class="form-heading">Welcome Back</h2>
+                <form>
+                    <input type="email" placeholder="Email Address" required class="input-field">
+                    <input type="password" placeholder="Password" required class="input-field">
+                    <button type="submit" class="btn-primary full-width">Log In</button>
+                </form>
+                <p class="auth-footer">Forgot Password? <a href="#">Reset Here</a></p>
+            </div>
+
+            <div id="signupForm" class="auth-form hidden">
+                <h2 class="form-heading">Create Account</h2>
+                <form>
+                    <input type="text" placeholder="Full Name" required class="input-field">
+                    <input type="email" placeholder="Email Address" required class="input-field">
+                    <input type="password" placeholder="Password (min 6 chars)" required class="input-field">
+                    <button type="submit" class="btn-secondary full-width">Sign Up Now</button>
+                </form>
+                <p class="auth-footer">By signing up, you agree to our <a href="#">Terms</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <div id="qrModal" class="auth-modal-overlay">
+    <div class="auth-box glass text-center" style="max-width: 400px; padding: 40px;">
+        <button id="closeQrBtn" class="close-btn">&times;</button>
+        
+        <h2 class="section-heading" style="font-size: 1.5rem; margin-bottom: 10px;">Unlock Premium</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Scan to access Advanced Analytics</p>
+        
+        <div style="background: white; padding: 10px; border-radius: 10px; display: inline-block; margin-bottom: 20px;">
+            <img src="{{ url_for('static', filename='img/qr-code.jpeg') }}" alt="Payment QR Code" width="200" height="200">
+        </div>
+
+        <p class="text-muted-small" style="margin-bottom: 20px;">Pay ₹499 via UPI/GPay</p>
+
+        <button id="confirmPaymentBtn" class="btn-primary full-width">
+            I Have Scanned & Paid ✅
+        </button>
+    </div>
+</div>
+</body>
+</html>

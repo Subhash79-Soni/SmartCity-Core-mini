@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveSPSAI | Enterprise Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleing.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon"><i class="fa-solid fa-wave-square"></i></div>
+                <span class="brand-name">WaveSPSAI</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <p class="menu-label">Analytics</p>
+                <a href="#" class="nav-item active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                <a href="#traffic" class="nav-item"><i class="fa-solid fa-traffic-light"></i> Traffic</a>
+                <a href="#energy" class="nav-item"><i class="fa-solid fa-bolt"></i> Energy Grid</a>
+                
+                <p class="menu-label">Management</p>
+                <a href="#camera" class="nav-item"><i class="fa-solid fa-video"></i> AI Vision</a>
+                <a href="#datasets" class="nav-item"><i class="fa-solid fa-database"></i> Datasets</a>
+                <a href="#team" class="nav-item"><i class="fa-solid fa-users"></i> Team</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">AD</div>
+                    <div class="user-info">
+                        <span class="name">Admin User</span>
+                        <span class="role">Super Admin</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <h2 class="page-title">City Overview</h2>
+                    <p class="current-date" id="dateDisplay">Loading date...</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" placeholder="Search metrics...">
+                    </div>
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i><span class="dot"></span></button>
+                    <button class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+                </div>
+            </header>
+
+            <div class="dashboard-wrapper">
+                
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Total Traffic</span>
+                            <span class="trend up">+12.5% <i class="fa-solid fa-arrow-up"></i></span>
+                        </div>
+                        <div class="kpi-value" id="trafficValue">Loading...</div>
+                        <div class="kpi-sub">Vehicles per hour</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Avg AQI</span>
+                            <span class="trend down">-4.2% <i class="fa-solid fa-arrow-down"></i></span>
+                        </div>
+                        <div class="kpi-value" id="aqiValue">Loading...</div>
+                        <div class="kpi-sub">Moderate Quality</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Power Usage</span>
+                            <span class="trend neutral">0.8% <i class="fa-solid fa-minus"></i></span>
+                        </div>
+                        <div class="kpi-value" id="energyValue">Loading...</div>
+                        <div class="kpi-sub">Megawatts (MW)</div>
+                    </div>
+                    <div class="kpi-card active-card">
+                        <div class="kpi-header">
+                            <span>Active Sensors</span>
+                        </div>
+                        <div class="kpi-value">1,024</div>
+                        <div class="kpi-sub"><span class="status-dot"></span> System Online</div>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-widget large">
+                        <div class="widget-header">
+                            <h3>Real-Time Traffic Prediction</h3>
+                            <button class="btn-xs">Export CSV</button>
+                        </div>
+                        <div class="canvas-wrapper">
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-widget small">
+                        <div class="widget-header">
+                            <h3>Energy Distribution</h3>
+                        </div>
+                        <div class="canvas-wrapper">
+                            <canvas id="energyPieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-widget">
+                    <div class="widget-header">
+                        <h3><i class="fa-solid fa-eye"></i> Live AI Surveillance</h3>
+                        <div class="widget-actions">
+                            <button id="camStart" class="btn-primary">Activate Feed</button>
+                            <button id="camStop" class="btn-outline">Stop</button>
+                        </div>
+                    </div>
+                    <div class="camera-layout">
+                        <div class="video-box">
+                            <video id="cameraFeed" autoplay muted playsinline></video>
+                            <div class="ai-overlay" id="aiStatus">System Standby</div>
+                        </div>
+                        <div class="logs-box">
+                            <h4>Detection Logs</h4>
+                            <ul class="log-list" id="logList">
+                                <li><span class="time">10:00:05</span> System Initialized</li>
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='scripting.js') }}"></script>
+</body>
+</html>
